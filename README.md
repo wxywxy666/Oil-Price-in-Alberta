@@ -11,8 +11,8 @@ The analysis was structured to provide clear insights into the factors that driv
 -   `data` contains the data sources used in analysis including the raw data and edited data.
 -   `paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper.
 -   `scripts` contains the R scripts used to simulate and clean data.
--   `others` contains the the LLM usage file and sketches.
+-   `others` contains the the LLM usage file which includes all chats with chatgpt, sketches for simulation and datasheet.
 
 ## Statement on LLM Usage
 
-Some parts of the codes in quarto were written with the help of chatgpt4. All of the chats are added in the `others/LLM_usage.txt`.
+Some parts of the codes in quarto were written with the help of chatgpt4 from OpenAi. All of the chats are added in the `others/LLM_usage.txt`.
