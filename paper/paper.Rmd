@@ -271,10 +271,6 @@ model_simple_gas <- lm(oil_price ~ gas_production, data = data)
 model_simple_wells <- lm(oil_price ~ well_counts, data = data)
 ```
 
-### Summarizing the Simple Linear Models
-summary(model_simple_gas)
-summary(model_simple_wells)
-
 ## Multiple Linear Regression
 After establishing the individual effects, a multiple linear regression was performed to account for the simultaneous influence of gas production and well counts on oil prices.
 
