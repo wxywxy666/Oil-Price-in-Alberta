@@ -1,0 +1,41 @@
+Model Card for Alberta Oil Price Prediction Models
+Model Details
+Type: Simple and Multiple Linear Regression
+Version: 1.0
+Date: April 2024
+Developers: Xiyou Wang
+Institution: UofT
+Model Documentation: Available in Section 3 of the associated paper and in the GitHub repository.
+Intended Use
+Primary Use: To analyze the impact of gas production and well counts on oil prices in Alberta from 2005 to 2022.
+Users: Economists, policy makers, researchers studying energy markets, and stakeholders in the Alberta oil industry.
+Model/Data Inputs
+Input Features:
+Gas_Production: Total annual gas production by municipality in Alberta, measured in cubic meters.
+Well_Counts: Annual count of wells, including development, exploratory, and other types in Alberta.
+Target Variable:
+Oil_Price: Annual average price of WCS (Western Canadian Select) oil, measured in USD per barrel.
+Model/Data Outputs
+Output: Predicted annual oil prices based on the regression models.
+Training Data
+Source: Government of Alberta’s Open Data portal and Alberta Economic Dashboard.
+Period: Data from 2005 to 2022.
+Key Characteristics: Aggregated municipal data on gas production and well counts, merged with oil price data.
+Evaluation Metrics
+Metrics Used: R-squared, RMSE (Root Mean Squared Error), adjusted R-squared for model accuracy.
+Performance: The models show moderate predictive power with room for improvement through inclusion of additional variables or using more complex modeling approaches.
+Ethical Considerations
+Biases: Models may not adequately capture the influence of external economic factors, global market changes, or technological advancements.
+Mitigations: Future iterations could incorporate global economic indicators or alternative energy trends to enhance model robustness.
+Caveats and Recommendations
+Limitations: The model assumes linearity in the relationships between inputs and the target. Multicollinearity between Gas_Production and Well_Counts could affect the interpretation and reliability of the model coefficients.
+Future Work: Incorporate more diverse data sources, explore non-linear models, and apply cross-validation techniques to improve prediction accuracy and model robustness.
+Model Updates
+Update Policy: The model will be reviewed and updated quarterly based on the availability of new data and advancements in modeling techniques.
+Change Log: Initial release in April 2024. Future updates will be logged in this section.
+License
+Code and Models: Available under MIT License.
+Data: Used under terms from the Government of Alberta and is publicly available for research purposes.
+Contact Information
+Contact: xiyou.wang@mail.utoronto.ca
+Feedback: Users are encouraged to provide feedback on model performance and suggest improvements through the project's GitHub repository.
