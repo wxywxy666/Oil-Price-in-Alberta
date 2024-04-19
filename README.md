@@ -13,6 +13,7 @@ The analysis was structured to provide clear insights into the factors that driv
 -   `scripts` contains the R scripts used to simulate and clean data.
 -   `models` contains the model card and the model used in paper
 -   `other` contains the the LLM usage file which includes all chats with chatgpt, sketches for simulation and datasheet.
+
 ## Statement on LLM Usage
 
 Some parts of the codes in quarto were written with the help of chatgpt4 from OpenAi. All of the chats are added in the `others/LLM_usage.txt`.
