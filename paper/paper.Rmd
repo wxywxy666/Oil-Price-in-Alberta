@@ -1,11 +1,11 @@
 ---
-title: "aaa"
-subtitle: "bbb"
+title: "Assessing the Drivers of Crude Oil Prices in Alberta"
+subtitle: "Unveiling the Relationship between Gas, Wells and Oil"
 author: Xiyou Wang
 thanks: "Code and data are available at: https://github.com/wxywxy666/Oil-Price-in-Alberta.git."
 date: "`r format(Sys.time(), '%d %B %Y')`"
 date-format: long
-abstract: "ccc"
+abstract: "This paper investigates the influence of gas production and well counts on oil prices in Alberta's market from 2005 to 2022. By constructing and analyzing a dataset that encapsulates these variables alongside annual oil prices, we pinpoint the subtle yet significant connections they share. The findings reveal a negative correlation between gas production and oil prices and a positive correlation between well counts and prices. These insights highlight the intricate balance between regional production activities and oil market valuations, providing a data-driven foundation for future economic and policy planning. The study emphasizes the necessity for a multi-faceted approach in forecasting oil prices, considering the complexity of market factors."
 toc: true
 toc-title: "Contents"
 number-sections: true
@@ -25,26 +25,26 @@ library(ggplot2)
 library(corrplot)
 library(car)
 library(Metrics)
-library(modelsummary)
 library(broom)
 library(performance)
 ```
+\newpage
 # Introduction
-Crude oil and natural gas significantly influence the global energy portfolio, and their price linkage affects trading strategies, investment decisions, energy policies, and portfolio optimization. The Alberta oil market, crucial to both the Canadian and the global economy, requires a clear understanding of the factors determining oil prices. This paper examines the relationship between oil prices and potential predictors such as gas production and well counts in Alberta from 2005 to 2022.
+Crude oil and natural gas significantly influence the global energy portfolio, and their price linkage affects trading strategies, investment decisions, energy policies, and portfolio optimization [@u2022crude]. The Alberta oil market, crucial to both the Canadian and the global economy, requires a clear understanding of the factors determining oil prices. This paper examines the relationship between oil prices and potential predictors such as gas production and well counts in Alberta from 2005 to 2022.
 
 Despite previous research on market dynamics, there's a need for studies that focus on the Alberta market's specific conditions. Addressing this need, this study has constructed a dataset merging oil prices with gas production and well counts from various Alberta municipalities. The approach transitions from raw data to an analytical model, aiming to reveal provincial market trends.
 
-The study's results offer insights into the oil market dynamics of Alberta and their implications for energy economics. They highlight the influence of regional production on oil prices, providing data that can guide economic and policy decisions. The findings underscore that while gas production and well counts influence oil prices, understanding the market's intricacies requires considering a range of other factors.
+The study's results offer insights into the oil market dynamics of Alberta and their implications for energy economics. Highlight the influence of regional production on oil prices, providing data that can guide economic and policy decisions. The findings underscore that while gas production and well counts influence oil prices, understanding the market's intricacies requires considering a range of other factors [@AER].
 
 The paper begin with a data section (@sec-data) to visualize and further understand the measurements, sources, methods, and variables we are examining. We then introduce the model (@sec-model) used to understand the relationships in the data and report the results in the results section (@sec-results). Finally, we provide a discussion of the findings (@sec-discussion), summarizing the key points and future of this research.
 
 # Data {#sec-data}
 
 ## Sources
-There are three original data sets used in this article, analyzed in `R` [@citeR]. `Natural gas production by municipality` and `Well count by municipality` were downloaded from Government of Alberta: Open Data. They introduce the natural gas production of each city in Alberta from 2003 to 2022 (the measurement unit is cubic meters) and number of wells, including total development, exploratory, evaluation and experimental wells drilled including natural gas, coalbed methane, crude oil, crude bitumen and other wells. Data is collected and pubulished by "Jobs, Economy and Northern Development", updated annually. `WCS Oil Price` downloaded from Government of Alberta: Alberta Economic Dashboard, including WTI (West Texas Intermediate) crude oil prices from 1983 to 2024 and WCS (Western Canadian Select) crude oil prices from 2005 to 2024. Oil prices are recorded by the Government and measured in US dollars per barrel.
+There are three original data sets used in this article, 'Natural gas production by municipality' and 'Well count by municipality' were downloaded from Government of Alberta: Open Data [@openAlberta]. They introduce the natural gas production of each city in Alberta from 2003 to 2022, measured in cubic meters and number of wells, including total development, exploratory, evaluation and experimental wells drilled including natural gas, coalbed methane, crude oil, crude bitumen and other wells. Data is collected and pubulished by "Jobs, Economy and Northern Development", updated annually. 'WCS Oil Price' downloaded from Government of Alberta: Alberta Economic Dashboard [@AlbertaE], including WTI (West Texas Intermediate) crude oil prices from 1983 to 2024 and WCS (Western Canadian Select) crude oil prices from 2005 to 2024. Oil prices are recorded by the Government and measured in US dollars per barrel.
 
 ## Variables {#sec-variables}
-`Natural gas production by municipality` and `Well count by municipality` share the same variable name due to the same source. `CSUID` and `CSD` refer to the administrative identification codes and names of cities in the Alberta. `Period` represents the year, from 2003 to 2022. `IndicatorSummaryDescription` corresponds to natural gas production and well count respectively. `UnitOfMeasure` for gas is $m^3$. `OriginalValue` is the specific natural gas production and the number of wells. `WCS Oil Price` contains four variables. `Date` is the first of each month from April 1983 to February 2024. `Value` represents the price of crude oil in US dollars. `Series` distinguishes between WCS and WTI crude oil type.
+Dataset 'Natural gas production by municipality' and 'Well count by municipality' share the same variable name due to the same source. `CSUID` and `CSD` refer to the administrative identification codes and names of cities in the Alberta. `Period` represents the year, from 2003 to 2022. `IndicatorSummaryDescription` corresponds to natural gas production and well count respectively. `UnitOfMeasure` for gas is $m^3$. `OriginalValue` is the specific natural gas production and the number of wells. 'WCS Oil Price' contains four variables. `Date` is the first of each month from April 1983 to February 2024. `Value` represents the price of crude oil in US dollars. `Series` distinguishes between WCS and WTI crude oil type.
 
 Only the variables relevant to this study are introduced here. Please refer to the @sec-dataset in Appendix for details.
 
@@ -67,10 +67,10 @@ This study analyzes WCS crude oil prices, and these data are recorded in US doll
 
 The transformation from raw numbers into meaningful dataset entries involved aggregating individual municipality data to provide a province-wide overview. This consolidation was pivotal to shift the focus from local to regional trends, ensuring that our analysis captures the broader economic patterns that could influence the oil prices. By utilizing these measures, we transition from observing discrete activities—such as the drilling of a new well or the extraction of a cubic meter of gas—to examining the collective impact these activities have on Alberta's oil prices. This approach helps us understand the interconnected nature of production, infrastructure, and market prices.
 
-Through meticulous data cleaning and processing, as detailed in @sec-cleaning, we ensure the dataset's reliability. We filter, aggregate, and cross-reference data from multiple sources, harmonizing different measurements into one.
+Through meticulous data cleaning and processing, as detailed in @sec-cleaning, the dataset's reliability is ensured. All figures, tables and tatistical models shown in the paper are run in the programming software `R` [@R], and some R packages are used: `here` [@here], `tidyverse` [@tidyverse], `knitr` [@knitr], `kableExtra` [@kableExtra], `ggplot2` [@ggplot2], `corrplot` [@corrplot], `car` [@car], `Metrics` [@Metrics], `broom` [@broom], `performance` [@performance].
 
 ## Data Cleaning {#sec-cleaning}
-Raw data usually cannot be used directly in analysis articles because they originally serve different service targets. Data cleaning is to organize the raw data into a form that serves our main research goals. First, for `Natural gas production by municipality` I merged the data of different municipalities by year in order to study the trends in the province. Do the same thing to `Well count by municipality`, but only selected observes with series as `WCS`. Those raw varibales are saved as `gas_producion` and `well_counts`. And since different data sets contain different numbers of samples, I chose a compromise from 2005 to 2022 as the research object to ensure that there is no missing data in the final processed data. In the `WCS Oil Price` I deleted the `labels` variable because it represents the specific time when prices are collected each time and is useless for our research. I stored the cleaned `gas_production`, `well_counts` and `oil_price` which represent the average price in a year in 'data/edited_data' respectively, and merged them together and saved it as `merged_data.csv.` Some R packages were used in cleaning the data, such as: `dplyr` [@dplyr], `lubridate` [@lubridate], `janitor` [@janitor].
+Raw data usually cannot be used directly in analysis articles because they originally serve different service targets. Data cleaning is to organize the raw data into a form that serves our main research goals. First, for 'Natural gas production by municipality' I merged the data of different municipalities by year in order to study the trends in the province. Do the same thing to 'Well count by municipality', but only selected observes with series as `WCS`. Those raw varibales are saved as `gas_producion` and `well_counts`. And since different data sets contain different numbers of samples, I chose a compromise from 2005 to 2022 as the research object to ensure that there is no missing data in the final processed data. In the 'WCS Oil Price' I deleted the `labels` variable because it represents the specific time when prices are collected each time and is useless for our research. I stored the cleaned `gas_production`, `well_counts` and `oil_price` which represent the average price in a year in 'data/edited_data' respectively, and merged them together and saved it as 'merged_data.csv'. Some R packages were used in cleaning the data, such as: `dplyr` [@dplyr], `lubridate` [@lubridate], `janitor` [@janitor].
 
 # Model {#sec-model}
 
@@ -250,21 +250,63 @@ Despite the meticulous data processing and modeling, this study has its limitati
 Future research directions include incorporating more predictive variables to explain the complexity of the oil market.This could involve capturing variables such as global oil demand, energy policy shifts or renewable energy advances, which could further refine the model.Nonlinear approaches could also be explored to explain potential threshold effects or diminishing returns in production.Furthermore, a cross-validation framework could be introduced to improve the model's predictive robustness and accuracy. Future work could extend the scope from Alberta to the global landscape, discussing how the price relationship between crude oil and natural gas evolves over time, taking into account supply and demand.
 
 \newpage
-# References
-
-\newpage
 \appendix
 # Appendix {-}
 
 # Dataset {#sec-dataset}
-aaa
+In the 'WCS Oil Price' file, the `Series` variable actually contains data on WCS and WTI crude oil. At the beginning of the research, I also considered whether to introduce WTI as a reference volume, because oil is a global market, but the final decision Give up because when studying Alberta, considering locally produced crude oil has more regional effects.
 
 # Model
-aaa
 
-# Data Sheet
-aaa
+## Simple Linear Regression
+The simple linear regression analysis was conducted to understand the primary relationships between each predictor (gas production and well counts) and the response variable (oil price). The objective was to evaluate the direct impact of each predictor on the oil price.
 
+### Rationale
+Simple linear regression provides an initial insight into the relationship dynamics before complicating the model with multiple predictors. It's essential to discern the individual contributions of gas production and well counts towards explaining the variance in oil prices.
+
+```{r}
+#| echo: true
+#| eval: false
+model_simple_gas <- lm(oil_price ~ gas_production, data = data)
+model_simple_wells <- lm(oil_price ~ well_counts, data = data)
+```
+
+### Summarizing the Simple Linear Models
+summary(model_simple_gas)
+summary(model_simple_wells)
+
+## Multiple Linear Regression
+After establishing the individual effects, a multiple linear regression was performed to account for the simultaneous influence of gas production and well counts on oil prices.
+
+### Rationale
+Multiple linear regression was used to understand the combined effects of gas production and well counts, as well as to address potential multicollinearity between predictors. This model provides a more comprehensive view of how these predictors interact with each other in influencing oil prices.
+
+```{r}
+#| echo: true
+#| eval: false
+model <- lm(oil_price ~ gas_production + well_counts, data=data)
+model_summary <- bind_rows(tidy(model), performance::performance(model))
+```
+
+## Model Prediction
+The model's predictive capability was visualized by comparing predicted oil prices against the actual prices.
+
+### Rationale
+Visualizing predictions allows us to evaluate the model's accuracy and to identify areas where the model performs well or where it may require improvements.
+
+```{R}
+#| echo: true
+#| eval: false
+predicted_prices <- predict(model_multiple, data)
+
+ggplot(data, aes(x = predicted_prices, y = oil_price)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  labs(x = "Predicted Oil Price", y = "Actual Oil Price")
+```
+
+\newpage
+# References
 
 
 
