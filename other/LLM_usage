@@ -1,6 +1,6 @@
 User
 merged_data.csv
-电子表格
+
 im studying Alberta oil price, use other varibles to establish a multiple linear model, I need several graph and tables as the whole analysis. give me R code and describe
 ChatGPT
 To help you analyze the Alberta oil price using a multiple linear regression model, we'll go through the following steps:
